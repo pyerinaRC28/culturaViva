@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 body {
   margin: 0;
 }
@@ -10,10 +11,12 @@ body {
   background-color: transparent;
   font-family: "Public Sans", sans-serif;
   font-weight: bold;
+
   .collapse {
     justify-content: flex-end;
     font-size: 18px;
   }
+
   .navbar-nav {
     gap: 60px;
   }
@@ -46,16 +49,19 @@ body {
       font-weight: bold;
       font-family: "Public Sans", sans-serif;
     }
+
     .texto {
       margin-bottom: 60px;
       padding: 70px 100px 40px 40px;
       background-color: rgba(20, 55, 91, 0.7);
     }
+
     .card-text {
       font-family: "Domine", serif;
       font-size: 80px;
       margin: 0;
     }
+
     .card-under {
       font-family: "Domine", serif;
       font-size: 30px;
@@ -100,6 +106,92 @@ section.nosotros {
   grid-template-rows: repeat(1, 1fr);
   gap: 8px;
 }
+
+
+/*---------AQUÍ EMPIEZA SECTION GALERIA----------*/
+section.galeria {
+  background-color: white;
+  padding: 80px;
+
+  .title {
+    font-family: "Domine", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .content{
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel {
+    max-width: 700px;
+    margin: auto;
+    position: relative;
+  }
+
+  #carouselHorizontal .custom-img {
+    max-height: 400px;
+    object-fit: cover;
+    width: 100%; /* aseguramos el mismo ancho */
+  }
+
+  #carouselVertical .custom-img {
+    height: 500px;
+    width: auto;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+  }
+
+  .carousel-caption {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: background-color 0.3s;
+    z-index: 2;
+  }
+
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .carousel-control-prev i,
+  .carousel-control-next i {
+    color: white;
+    font-size: 1.3rem;
+  }
+
+.carousel-control-prev {
+    left: 1rem;
+  }
+
+.carousel-control-next {
+    right: 1rem;
+  }
+}
+
+
 
 /*-----------AQUÍ EMPIEZA FOOTER------------------*/
 footer {

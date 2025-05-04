@@ -26,7 +26,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Proyectos</a>
@@ -40,16 +40,20 @@
     </nav>
 
     <!--------------Portada---------------------->
-    <div class="card text-bg-dark">
-        <img src="./img/portada.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
-            <p class="card-title">CULTURA VIVA CONOCE EL MUNDO</p>
-            <div class="texto">
-                <p class="card-text">CULTURA VIVA</p>
-                <p class="card-under">Videos que dan vida a lo que nos une</p>
+    <section class="portada" id="portada">
+        <div class="content">
+            <div class="card text-bg-dark">
+                <img src="./img/portada.jpg" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                    <p class="card-title">CULTURA VIVA CONOCE EL MUNDO</p>
+                    <div class="texto">
+                        <p class="card-text">CULTURA VIVA</p>
+                        <p class="card-under">Videos que dan vida a lo que nos une</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!--------------Nosotros---------------------->
     <section class="nosotros" id="nosotros">
@@ -66,11 +70,50 @@
     </section>
 
     <!--------------Proceso---------------------->
-    <div class="parent">
+    <!-- <div class="parent">
         <div class="div1">1</div>
         <div class="div2">2</div>
         <div class="div3">3</div>
-    </div>
+    </div> -->
+
+
+    <!--------------Portada---------------------->
+    <section class="galeria" id="galeria">
+        <p class="title">Nuestra Galería</p>
+        <div class="content">
+            <div class="set horizontal">
+                <div id="carouselHorizontal" class="carousel carousel-fade">
+                    <div class="carousel-inner" id="horizontal-carousel-inner">
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselHorizontal"
+                        data-bs-slide="prev">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselHorizontal"
+                        data-bs-slide="next">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="set vertical">
+                <div id="carouselVertical" class="carousel carousel-fade">
+                    <div class="carousel-inner" id="vertical-carousel-inner">
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselVertical"
+                        data-bs-slide="prev">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselVertical"
+                        data-bs-slide="next">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!--------------Footer---------------------->
     <footer>
@@ -98,6 +141,16 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js"
+        integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+"
+        crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+
+
 </body>
 
 </html>
