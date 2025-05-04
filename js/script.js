@@ -42,6 +42,14 @@ function renderCarruselFotos(fotos, containerId) {
   });
 }
 
+/*-------------Scroll Navbar---------------*/
+window.addEventListener('scroll', function () {
+  const navbar = document.getElementById('navbar');
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+
+/*-------Carrousel----------------------*/
 const fotosHorizontales = [
   { src: "./img/_DSC0084.jpg" },
   { src: "./img/_DSC5673.jpg" },
@@ -102,3 +110,6 @@ const videoLinks = [
     src: "https://www.youtube.com/embed/5Sh_2PW6udc?si=0oauGyMM0rB6HCFA"
   }
 ];
+
+
+
