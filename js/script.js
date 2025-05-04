@@ -1,6 +1,5 @@
 const fotosHorizontales = [
   { src: "./img/_DSC0084.jpg" },
-  { src: "./img/_MG_9892.jpg" },
   { src: "./img/_DSC5673.jpg" },
   { src: "./img/_DSC4264.jpg" },
   { src: "./img/_DSC6105.jpg" },
@@ -10,6 +9,7 @@ const fotosHorizontales = [
   { src: "./img/_DSC4448.jpg" },
   { src: "./img/_DSC5435.jpg" },
   { src: "./img/_DSC2250.jpg" },
+  { src: "./img/_MG_9892.jpg" }
 ];
 
 const fotosVerticales = [
