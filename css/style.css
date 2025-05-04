@@ -112,18 +112,20 @@ section.nosotros {
 
   .div1 {
     justify-items: center;
+
     .title {
       font-size: 30px;
       color: black;
     }
   }
+
   .div2 {
     display: flex;
     align-items: center;
     gap: 30px;
     padding: 60px 30px 40px 40px;
     width: 90%;
-    
+
     .proceso {
       text-align: center;
       width: max-content;
@@ -143,12 +145,12 @@ section.galeria {
     font-family: "Domine", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 2.5em;
+    font-size: 1.8em;
     text-align: center;
     margin-bottom: 40px;
   }
 
-  .content{
+  .content {
     display: flex;
     gap: 80px;
     align-items: center;
@@ -164,7 +166,8 @@ section.galeria {
   #carouselHorizontal .custom-img {
     max-height: 400px;
     object-fit: cover;
-    width: 100%; /* aseguramos el mismo ancho */
+    width: 100%;
+    /* aseguramos el mismo ancho */
   }
 
   #carouselVertical .custom-img {
@@ -208,12 +211,53 @@ section.galeria {
     font-size: 1.3rem;
   }
 
-.carousel-control-prev {
+  .carousel-control-prev {
     left: 1rem;
   }
 
-.carousel-control-next {
+  .carousel-control-next {
     right: 1rem;
+  }
+}
+
+
+/*-----------AQUÍ EMPIEZA VIDEOS------------------*/
+section.videos {
+  padding: 60px;
+
+  .title {
+    font-family: "Domine", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .video-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+  }
+
+
+  .video-preview {
+    cursor: pointer;
+  }
+
+  .video-thumbnail {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .modal-dialog {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
   }
 }
 
@@ -221,7 +265,7 @@ section.galeria {
 
 /*-----------AQUÍ EMPIEZA FOOTER------------------*/
 footer {
-  padding: 80px;
+  padding: 60px;
   display: flex;
   gap: 40px;
   flex-direction: column;

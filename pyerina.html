@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Proyecto Audiovisual</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    .video-gallery {
+      display: flex;
+      gap: 30px;
+    }
+    .video-preview {
+      width: 320px;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    .video-preview:hover {
+      transform: scale(1.02);
+    }
+    .video-preview video {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal.hidden {
+      display: none;
+    }
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+    }
+    .close {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Proyecto audiovisual</h1>
+  <div class="video-gallery">
+    <div class="video-preview" data-youtube-id="5Sh_2PW6udc">
+      <video muted loop preload="none" poster="https://img.youtube.com/vi/5Sh_2PW6udc/hqdefault.jpg">
+        <source src="preview.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="videoModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <iframe id="videoFrame" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.video-preview').forEach(preview => {
+      const video = preview.querySelector('video');
+
+      preview.addEventListener('mouseenter', () => {
+        video.play();
+      });
+
+      preview.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+
+      preview.addEventListener('click', () => {
+        const youtubeId = preview.getAttribute('data-youtube-id');
+        const iframe = document.getElementById('videoFrame');
+        iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+        document.getElementById('videoModal').classList.remove('hidden');
+      });
+    });
+
+    document.querySelector('.close').addEventListener('click', () => {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoFrame');
+      iframe.src = '';
+      modal.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>
