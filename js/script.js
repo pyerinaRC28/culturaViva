@@ -3,19 +3,38 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarruselFotos(fotosVerticales, 'vertical-carousel-inner');
 
   const container = document.getElementById('videoGallery');
+  const videoModal = document.getElementById('videoModal');
+  const videoFrame = document.getElementById('videoFrame');
+  const bootstrapModal = new bootstrap.Modal(videoModal);
+
+  // Tu lista de videos (debes tenerla definida como array de objetos)
   videoLinks.forEach(video => {
     const div = document.createElement('div');
     div.className = 'video-preview';
     div.dataset.youtubeId = video.youtubeId;
     div.innerHTML = `
-      <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
-    `;
+    <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
+  `;
+
+    // Evento para abrir el modal con el video
+    div.addEventListener('click', () => {
+      const videoUrl = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+      videoFrame.src = videoUrl;
+      bootstrapModal.show();
+    });
+
     container.appendChild(div);
   });
 
+  // Limpia el video al cerrar el modal
+  videoModal.addEventListener('hidden.bs.modal', () => {
+    videoFrame.src = '';
+  });
+
+
   document.addEventListener('click', function (e) {
     const preview = e.target.closest('.video-preview');
-    
+
     if (preview) {
       const youtubeId = preview.dataset.youtubeId;
       const iframe = document.getElementById('videoFrame');

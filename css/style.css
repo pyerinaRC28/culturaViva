@@ -258,6 +258,10 @@ section.videos {
     display: flex;
     justify-content: center;
     justify-items: center;
+    
+  }
+  .modal-content{
+    background-color: transparent;
   }
 }
 
