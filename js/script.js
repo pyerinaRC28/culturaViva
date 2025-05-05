@@ -1,3 +1,50 @@
+/*-------------Scroll Navbar---------------*/
+window.addEventListener('scroll', function () {
+  const navbar = document.getElementById('navbar');
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------Carrousel----------------------*/
 const fotosHorizontales = [
   { src: "./img/_DSC0084.jpg" },
   { src: "./img/_DSC5673.jpg" },
@@ -42,3 +89,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarruselFotos(fotosHorizontales, "horizontal-carousel-inner");
   renderCarruselFotos(fotosVerticales, "vertical-carousel-inner");
 });
+
+

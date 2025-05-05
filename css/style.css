@@ -6,11 +6,13 @@ body {
 
 /*--------AQUÍ EMPIEZA SECTION NAVBAR------*/
 .navbar {
+  margin-top: 0;
   padding-left: 12px;
   padding-right: 12px;
   background-color: transparent;
   font-family: "Public Sans", sans-serif;
   font-weight: bold;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
   .collapse {
     justify-content: flex-end;
@@ -20,6 +22,11 @@ body {
   .navbar-nav {
     gap: 60px;
   }
+}
+
+.navbar.scrolled {
+  background-color: #615b4f;
+  color: #fff;
 }
 
 /*---------AQUÍ EMPIEZA SECTION PORTADA----------*/
@@ -71,16 +78,16 @@ body {
 
 /*-----------AQUÍ EMPIEZA SECTION NOSOTROS------------------*/
 section.nosotros {
+  padding: 80px;
   .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    margin: 80px 0px 80px 120px;
     padding: 40px;
-    background-color: #4c5358;
-    width: 550px;
+    background-color: #615b4f;
     color: #ffff;
+    width: 40%;
 
     p {
       font-family: "Domine", serif;
@@ -110,6 +117,13 @@ section.nosotros {
   font-family: "Domine", serif;
   color: #fff;
 
+  .fa-angles-right{
+    display: inline;
+  }
+  .fa-angles-down{
+    display: none;
+  }
+  
   .div1 {
     justify-items: center;
     .title {
@@ -123,7 +137,7 @@ section.nosotros {
     gap: 30px;
     padding: 60px 30px 40px 40px;
     width: 90%;
-    
+
     .proceso {
       text-align: center;
       width: max-content;
@@ -132,7 +146,6 @@ section.nosotros {
     }
   }
 }
-
 
 /*---------AQUÍ EMPIEZA SECTION GALERIA----------*/
 section.galeria {
@@ -148,7 +161,7 @@ section.galeria {
     margin-bottom: 40px;
   }
 
-  .content{
+  .content {
     display: flex;
     gap: 80px;
     align-items: center;
@@ -208,16 +221,14 @@ section.galeria {
     font-size: 1.3rem;
   }
 
-.carousel-control-prev {
+  .carousel-control-prev {
     left: 1rem;
   }
 
-.carousel-control-next {
+  .carousel-control-next {
     right: 1rem;
   }
 }
-
-
 
 /*-----------AQUÍ EMPIEZA FOOTER------------------*/
 footer {
@@ -276,6 +287,139 @@ footer {
 
     .icon {
       font-size: 2rem;
+    }
+  }
+}
+
+/*-----Resposive----------------*/
+@media (max-width: 640px) {
+  /*-----Nav----------------*/
+  .navbar {
+    .navbar-nav {
+      gap: 5px;
+      padding-left: 10px;
+    }
+  }
+
+  /*-----Portada----------------*/
+  .card {
+    .card-img-overlay {
+      padding: 0 30px 0 30px;
+
+      .card-title {
+        margin-bottom: 80px;
+        font-size: 14px;
+      }
+
+      .texto {
+        margin-bottom: 60px;
+        padding: 30px;
+      }
+
+      .card-text {
+        font-size: 45px;
+      }
+
+      .card-under {
+        font-size: 20px;
+      }
+    }
+  }
+
+  /*-----Nosotros----------------*/
+  section.nosotros {
+    padding: 20px;
+    .content {
+      color: #ffff;
+      padding: 30px;
+      width: 100%;
+
+      p {
+        font-size: 1.6em;
+        margin-bottom: 0;
+      }
+
+      li {
+        font-size: 1em;
+      }
+    }
+  }
+
+  /*-----Galería----------------*/
+  section.galeria {
+    padding: 30px;
+
+    .title {
+      font-size: 2em;
+    }
+
+    .content {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 30px;
+      height: 30px;
+    }
+
+    .carousel-control-prev i,
+    .carousel-control-next i {
+      color: white;
+      font-size: 1rem;
+    }
+  }
+
+  /*---------Proceso----------*/
+  .parent {
+    .fa-angles-right{
+      display: none;
+    }
+    .fa-angles-down{
+      display: inline;
+    }
+    .div1 {
+      justify-items: center;
+      .title {
+        font-size: 30px;
+        color: black;
+      }
+    }
+    .div2 {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+
+      .proceso {
+        width: fit-content;
+        font-size: 20px;
+      }
+    }
+  }
+
+  /*---------Footer----------*/
+  footer {
+    padding: 50px 40px;
+    align-items: flex-start;
+    gap: 30px;
+
+    .title {
+      text-align: left;
+      font-size: 22px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+  
+    .centerFlex {
+      .content {
+        align-items: flex-start;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 /* animaciones.css */
 
 .bg-pan-right {
-    animation: bg-pan-right 30s linear infinite;
+    animation: bg-pan-right 20s linear  infinite;
     background-image: linear-gradient(
       90deg,
       #615b4f 0%,
