@@ -73,10 +73,29 @@ window.addEventListener('scroll', function () {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Desactivar clic derecho
-// document.addEventListener('contextmenu', function (e) {
-//   e.preventDefault();
-// });
+function openVideoModal(url, isVertical = false) {
+  const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+  const iframe = document.getElementById('videoFrame');
+  const modalDialog = document.getElementById('modalDialog');
+
+  // Limpiar clases previas
+  modalDialog.className = 'modal-dialog'; // Siempre parte de esta base
+
+  // Si es horizontal, agregar modal-xl
+  if (!isVertical) {
+    modalDialog.classList.add('modal-xl');
+  }
+
+  iframe.src = url;
+  modal.show();
+
+  // Vaciar el src al cerrar (detiene sonido)
+  const modalElement = document.getElementById('videoModal');
+  modalElement.addEventListener('hidden.bs.modal', () => {
+    iframe.src = '';
+  }, { once: true });
+}
+
 
 // Lista de fotos horizontales y verticales
 const fotosHorizontales = [
