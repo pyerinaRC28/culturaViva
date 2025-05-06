@@ -68,6 +68,11 @@ window.addEventListener('scroll', function () {
 });
 
 
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+
 /*-------Carrousel----------------------*/
 const fotosHorizontales = [
   { src: "./img/_DSC0084.jpg" },
