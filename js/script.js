@@ -7,50 +7,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const videoFrame = document.getElementById('videoFrame');
   const bootstrapModal = new bootstrap.Modal(videoModal);
 
-  // Tu lista de videos (debes tenerla definida como array de objetos)
+  // Renderizar miniaturas de videos
   videoLinks.forEach(video => {
     const div = document.createElement('div');
     div.className = 'video-preview';
-    div.dataset.youtubeId = video.youtubeId;
+    div.dataset.id = video.id;
+    div.dataset.type = video.type;
     div.innerHTML = `
-    <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
-  `;
-
-    // Evento para abrir el modal con el video
-    div.addEventListener('click', () => {
-      const videoUrl = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
-      videoFrame.src = videoUrl;
-      bootstrapModal.show();
-    });
+      <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
+    `;
 
     container.appendChild(div);
   });
 
-  // Limpia el video al cerrar el modal
-  videoModal.addEventListener('hidden.bs.modal', () => {
-    videoFrame.src = '';
-  });
-
-
+  // Evento global para abrir el modal con el video correspondiente
   document.addEventListener('click', function (e) {
     const preview = e.target.closest('.video-preview');
 
     if (preview) {
-      const youtubeId = preview.dataset.youtubeId;
+      const id = preview.dataset.id;
+      const type = preview.dataset.type;
       const iframe = document.getElementById('videoFrame');
-      iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+
+      let src = "";
+
+      if (type === "youtube") {
+        src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+      } else if (type === "vimeo") {
+        src = `https://player.vimeo.com/video/${id}?autoplay=1`;
+      }
+
+      iframe.src = src;
 
       const myModal = new bootstrap.Modal(document.getElementById('videoModal'));
       myModal.show();
     }
 
+    // Cerrar video al cerrar el modal
     if (e.target.matches('.btn-close')) {
       const iframe = document.getElementById('videoFrame');
-      iframe.src = ''; // Detener el video
+      iframe.src = '';
     }
+  });
+
+  // Limpiar el iframe al cerrar el modal
+  videoModal.addEventListener('hidden.bs.modal', () => {
+    videoFrame.src = '';
   });
 });
 
+// Renderiza carruseles de fotos
 function renderCarruselFotos(fotos, containerId) {
   const container = document.getElementById(containerId);
   fotos.forEach((foto, index) => {
@@ -61,19 +67,18 @@ function renderCarruselFotos(fotos, containerId) {
   });
 }
 
-/*-------------Scroll Navbar---------------*/
+// Scroll navbar
 window.addEventListener('scroll', function () {
   const navbar = document.getElementById('navbar');
   navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
+// Desactivar clic derecho
+// document.addEventListener('contextmenu', function (e) {
+//   e.preventDefault();
+// });
 
-document.addEventListener('contextmenu', function(e) {
-  e.preventDefault();
-});
-
-
-/*-------Carrousel----------------------*/
+// Lista de fotos horizontales y verticales
 const fotosHorizontales = [
   { src: "./img/_DSC0084.jpg" },
   { src: "./img/_DSC5673.jpg" },
@@ -102,38 +107,36 @@ const fotosVerticales = [
   { src: "./img/_DSC6715.jpg" },
 ];
 
+// Lista de videos (YouTube + Vimeo)
 const videoLinks = [
   {
-    youtubeId: "gAGfMjAYla0",
-    poster: "https://img.youtube.com/vi/gAGfMjAYla0/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/gAGfMjAYla0?si=PJzWPycEijvJZAyX"
+    type: "youtube",
+    id: "6BkD_dwTow4",
+    poster: "https://i.ytimg.com/vi/6BkD_dwTow4/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARgTIEgofzAP&rs=AOn4CLDUQrkztQu_VMofDE7WBICG31NLqw"
   },
   {
-    youtubeId: "6BkD_dwTow4",
-    poster: "https://img.youtube.com/vi/6BkD_dwTow4/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/6BkD_dwTow4?si=ANZoBkw-Nv6iBqvh"
+    type: "youtube",
+    id: "5Sh_2PW6udc",
+    poster: "https://i.ytimg.com/vi/5Sh_2PW6udc/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_IBMoRjAP&rs=AOn4CLBXSBJigkHlexuJ024vIrBfXfRsTw"
   },
   {
-    youtubeId: "wzVp0Lz8m0w",
-    poster: "https://img.youtube.com/vi/wzVp0Lz8m0w/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/wzVp0Lz8m0w?si=0WnTIbm_9LhGwp2H"
+    type: "vimeo",
+    id: "1081597068?h=d765640d74&amp",
+    poster: "https://i.vimeocdn.com/video/2012410397-d9a2a6366fdd75d19a35ced3134abc5f69187b0f7f929045d952629d7d03bedd-d?mw=2240&mh=1260&q=70"
   },
   {
-    youtubeId: "p5eyR3MzRd8",
-    poster: "https://img.youtube.com/vi/p5eyR3MzRd8/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/p5eyR3MzRd8?si=GeFWIOdTCOkvEyXx"
+    type: "vimeo",
+    id: "1081645760?h=7a57dd7fb1&amp",
+    poster: "https://i.vimeocdn.com/video/2012469498-a79c20e9fa5dcc8f619d136e3dae377cd18e4b56352c8781a657fb849ecd5adb-d?mw=500&mh=889"
   },
   {
-    youtubeId: "O9-1Wdm0SzI",
-    poster: "https://img.youtube.com/vi/O9-1Wdm0SzI/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/O9-1Wdm0SzI?si=0Mm-G2vgIEpd0dq5"
+    type: "vimeo",
+    id: "1081595991?h=c1639e1865&amp",
+    poster: "https://i.vimeocdn.com/video/2012408937-a247f00e1f1ba4effd4b8a00cdee6fe00d54837c4620ba8e3a6e966942742deb-d?mw=1000&mh=1778&q=70"
   },
   {
-    youtubeId: "5Sh_2PW6udc",
-    poster: "https://img.youtube.com/vi/5Sh_2PW6udc/hqdefault.jpg",
-    src: "https://www.youtube.com/embed/5Sh_2PW6udc?si=0oauGyMM0rB6HCFA"
+    type: "vimeo",
+    id: "1081593182?h=e4c72f9ee7&amp",
+    poster: "https://i.vimeocdn.com/video/2012406123-9495fa9f63666d7bdd6e54500c91e89cdbb4f8ccee98de83ef1b315ac07cc5f7-d?mw=1000&mh=1778&q=70"
   }
 ];
-
-
-
