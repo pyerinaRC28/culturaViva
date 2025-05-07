@@ -110,6 +110,8 @@ const fotosHorizontales = [
   { src: "./img/_DSC5435.jpg" },
   { src: "./img/_DSC2250.jpg" },
   { src: "./img/_MG_9892.jpg" },
+  { src: "./img/_MG_9892.jpg" },
+  { src: "./img/_MG_0881.jpg" },
 ];
 
 const fotosVerticales = [
@@ -124,6 +126,8 @@ const fotosVerticales = [
   { src: "./img/_DSC2107.jpg" },
   { src: "./img/_DSC2223.jpg" },
   { src: "./img/_DSC6715.jpg" },
+  { src: "./img/_DSC1786.jpg" },
+  
 ];
 
 // Lista de videos (YouTube + Vimeo)

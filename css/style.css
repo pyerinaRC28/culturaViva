@@ -1,4 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400..700&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&display=swap');
+
+:root {
+  --font-primary: "Archivo", sans-serif;
+  --font-secondary: "Lexend", sans-serif;
+}
 
 body {
   margin: 0;
@@ -7,6 +12,11 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
 }
+hr{
+  width: 90%;
+  justify-self: center;
+  margin: 0;
+}
 
 /*--------AQUÍ EMPIEZA SECTION NAVBAR------*/
 .navbar {
@@ -14,7 +24,7 @@ body {
   padding-left: 12px;
   padding-right: 12px;
   background-color: transparent;
-  font-family: "Public Sans", sans-serif;
+  font-family: var(--font-secondary);
   font-weight: bold;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -23,6 +33,17 @@ body {
     font-size: 18px;
   }
 
+  .navbar-brand{
+    padding-left: 40px;
+  }
+  button{
+    border: none;
+    margin-right: 30px;
+  }
+  i{
+    color: #73e82d  ;
+    font-size: 30px;
+  }
   .navbar-nav {
     gap: 60px;
     margin-right: 10px;
@@ -33,7 +54,7 @@ body {
 }
 
 .navbar.scrolled {
-  background-color: #615b4f;
+  background-color: #7134e5;
 }
 
 /*---------AQUÍ EMPIEZA SECTION PORTADA----------*/
@@ -65,28 +86,29 @@ body {
     z-index: 2;
 
     .card-title {
-      background-color: #14375b;
+      background-color: #7134e5 ;
       padding: 14px;
       margin-bottom: 100px;
       font-size: 18px;
       font-weight: bold;
-      font-family: "Public Sans", sans-serif;
+      font-family: var(--font-secondary);
     }
 
     .texto {
       margin-bottom: 60px;
       padding: 70px 100px 40px 40px;
-      background-color: rgba(20, 55, 91, 0.7);
+      background-color: rgba(113, 52, 229, 0.7);
     }
 
     .card-text {
-      font-family: "Domine", serif;
+      font-family: var(--font-secondary);
       font-size: 80px;
       margin: 0;
+      padding-bottom: 20px;
     }
 
     .card-under {
-      font-family: "Domine", serif;
+      font-family: var(--font-primary);
       font-size: 30px;
     }
   }
@@ -94,31 +116,41 @@ body {
 
 /*-----------AQUÍ EMPIEZA SECTION NOSOTROS------------------*/
 section.nosotros {
-  padding: 80px;
+  margin: 60px 250px;
+  padding: 30px 20px;
+  display: flex;
+  gap: 90px;
+  justify-content: center;
+  background-color: #e632b5;
+  align-items: center;
+
   .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-    padding: 40px;
-    background-color: #615b4f;
+    padding: 40px 0;
+    
     color: #ffff;
     width: 40%;
 
     p {
-      font-family: "Domine", serif;
+      font-family: var(--font-primary);
       font-weight: 400;
       font-style: normal;
       font-size: 1.8em;
     }
 
     li {
-      font-family: "Public Sans", sans-serif;
+      font-family: var(--font-secondary);
       font-optical-sizing: auto;
       font-weight: 400;
       font-style: normal;
       font-size: 1em;
     }
+  }
+  img{
+    width: 400px;
   }
 }
 
@@ -130,7 +162,7 @@ section.nosotros {
   padding: 0 30px 0 30px;
   align-items: center;
   padding: 40px 0 40px 0;
-  font-family: "Domine", serif;
+  font-family: var(--font-primary);
   color: #fff;
 
   .fa-angles-right {
@@ -165,13 +197,55 @@ section.nosotros {
   }
 }
 
+/*-----------AQUÍ EMPIEZA VIDEOS------------------*/
+section.videos {
+  padding: 60px;
+
+  .title {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .video-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+  }
+
+  .video-preview {
+    cursor: pointer;
+  }
+
+  .video-thumbnail {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .modal-dialog {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+  }
+  .modal-content {
+    background-color: transparent;
+  }
+}
+
 /*---------AQUÍ EMPIEZA SECTION GALERIA----------*/
 section.galeria {
   background-color: white;
   padding: 80px;
 
   .title {
-    font-family: "Domine", serif;
+    font-family: var(--font-primary);
     font-weight: 400;
     font-style: normal;
     font-size: 1.8em;
@@ -247,47 +321,13 @@ section.galeria {
   .carousel-control-next {
     right: 1rem;
   }
-}
-
-/*-----------AQUÍ EMPIEZA VIDEOS------------------*/
-section.videos {
-  padding: 60px;
-
-  .title {
-    font-family: "Domine", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1.8em;
-    text-align: center;
-    margin-bottom: 40px;
+  
+  .horizontal{
+    border: solid 10px #73e82d ;
   }
 
-  .video-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .video-preview {
-    cursor: pointer;
-  }
-
-  .video-thumbnail {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .modal-dialog {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-  }
-  .modal-content {
-    background-color: transparent;
+  .vertical{
+    border: solid 10px #e632b5  ;
   }
 }
 
@@ -299,11 +339,11 @@ footer {
   flex-direction: column;
   color: #ffff;
   text-align: center;
-  background-color: #615b4f;
+  background-color: #7134e5;
   border-top: 1px solid #e7e7e7;
 
   .title {
-    font-family: "Domine", serif;
+    font-family: var(--font-primary);
     font-weight: 400;
     font-style: normal;
     font-size: 1.5em;
@@ -323,7 +363,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    font-family: "Public Sans", sans-serif;
+    font-family: var(--font-secondary);
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -357,8 +397,16 @@ footer {
   /*-----Nav----------------*/
   .navbar {
     .navbar-nav {
-      gap: 5px;
-      padding-left: 10px;
+      gap: 0;
+      padding: 10px 20px;
+      background-color: #7134e5 ;
+    }
+    .navbar-brand{
+      padding-left: 20px;
+    }
+    .nav-link{
+      font-size: 15px;
+      
     }
   }
 
@@ -389,10 +437,13 @@ footer {
 
   /*-----Nosotros----------------*/
   section.nosotros {
-    padding: 20px;
+    margin: 30px 20px;
+    flex-direction: column;
+    gap: 0;
+
     .content {
       color: #ffff;
-      padding: 30px;
+      padding: 5px;
       width: 100%;
 
       p {
@@ -403,6 +454,10 @@ footer {
       li {
         font-size: 1em;
       }
+    }
+
+    img{
+      width: 280px;
     }
   }
 
@@ -445,6 +500,7 @@ footer {
 
   /*---------Proceso----------*/
   .parent {
+    padding-top: 10px;
     .fa-angles-right {
       display: none;
     }
@@ -461,7 +517,7 @@ footer {
     .div2 {
       display: flex;
       flex-direction: column;
-      width: 90%;
+      width: 80%;
 
       .proceso {
         width: fit-content;
