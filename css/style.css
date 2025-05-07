@@ -51,6 +51,9 @@ hr{
   .nav-link{
     color: #fff;
   }
+  .nav-link:hover{
+    color: #e632b5;
+  }
 }
 
 .navbar.scrolled {
@@ -467,6 +470,10 @@ footer {
 
     .title {
       font-size: 26px;
+    }
+
+    #carouselVertical .custom-img {
+      height: auto;
     }
 
     .content {
