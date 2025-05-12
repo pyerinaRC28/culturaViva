@@ -3,82 +3,84 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarruselFotos(fotosVerticales, 'vertical-carousel-inner');
 
   const dialog = document.getElementById("videoModal");
-  const videoFram = document.getElementById("videoFrame");
-  const videoGallery = document.getElementById("videoGallery");
-  // Renderizar miniaturas de videos
-  videoLinks.forEach(video => {
-    const div = document.createElement('div');
-    div.className = 'video-preview';
-    div.dataset.id = video.id;
-    div.dataset.type = video.type;
-    div.innerHTML = `
-      <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
-    `;
+const videoFrame = document.getElementById("videoFrame");
+const videoGallery = document.getElementById("videoGallery");
+let isAnimating = false;
 
-    videoGallery.appendChild(div);
-  });
+videoGallery.innerHTML = ""; // Limpia por si acaso
 
-  //------------------Modal -------------------------------------------------------
-
-
-  videoGallery.innerHTML = ""; // Limpia por si acaso
-
-  // Crear y agregar las miniaturas
-  videoLinks.forEach((video) => {
-    const card = document.createElement("div");
-    card.className = "video-card";
-    card.addEventListener("click", () => openVideo(video));
-  
-    const img = document.createElement("img");
-    img.src = video.poster;
-    img.alt = video.title || "Video";
-  
-    const overlay = document.createElement("div");
-    overlay.className = "overlay";
-  
-    const title = document.createElement("div");
-    title.className = "video-title";
-    title.textContent = video.title || "Sin título";
-  
-    const date = document.createElement("div");
-    date.className = "video-date";
-    date.textContent = video.date || "Sin fecha";
-  
-    overlay.appendChild(title);
-    overlay.appendChild(date);
-    card.appendChild(img);
-    card.appendChild(overlay);
-    videoGallery.appendChild(card);
-  });
-  
-  function openVideo(video) {
-    dialog.classList.remove("video-horizontal", "video-vertical", "show");
-    dialog.classList.add(video.orientation === "horizontal" ? "video-horizontal" : "video-vertical");
-  
-    let embedUrl = "";
-    if (video.type === "youtube") {
-      embedUrl = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
-    } else if (video.type === "vimeo") {
-      embedUrl = `https://player.vimeo.com/video/${video.id}?autoplay=1`;
+// Crear y agregar las miniaturas
+videoLinks.forEach((video) => {
+  const card = document.createElement("div");
+  card.className = "video-card";
+  card.addEventListener("click", () => {
+    if (!isAnimating && !dialog.open) {
+      openVideo(video);
     }
-  
-    videoFrame.src = embedUrl;
+  });
+
+  const img = document.createElement("img");
+  img.src = video.poster;
+  img.alt = video.title || "Video";
+
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+
+  const title = document.createElement("div");
+  title.className = "video-title";
+  title.textContent = video.title || "Sin título";
+
+  const date = document.createElement("div");
+  date.className = "video-date";
+  date.textContent = video.date || "Sin fecha";
+
+  overlay.appendChild(title);
+  overlay.appendChild(date);
+  card.appendChild(img);
+  card.appendChild(overlay);
+  videoGallery.appendChild(card);
+});
+
+function openVideo(video) {
+  forceCloseDialog(); // Asegura que esté limpio
+
+  dialog.classList.add(video.orientation === "horizontal" ? "video-horizontal" : "video-vertical");
+
+  let embedUrl = "";
+  if (video.type === "youtube") {
+    embedUrl = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+  } else if (video.type === "vimeo") {
+    embedUrl = `https://player.vimeo.com/video/${video.id}?autoplay=1`;
+  }
+
+  videoFrame.src = embedUrl;
+
+  setTimeout(() => {
     dialog.showModal();
     requestAnimationFrame(() => {
       dialog.classList.add("show");
     });
-  }
-  
-  // Cerrar el modal al hacer clic afuera
+  }, 20); // Le damos tiempo a que el display se reinicie
+}
+
+
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) {
-      dialog.classList.remove("show");
-      setTimeout(() => {
-        videoFrame.src = "";
-        dialog.close();
-      }, 300); // Coincide con duración de transición en CSS
-    }
-  });
+  if (event.target === dialog) {
+    forceCloseDialog();
+  }
+});
+
+
+function forceCloseDialog() {
+  videoFrame.src = "";
+  dialog.classList.remove("show", "video-horizontal", "video-vertical");
+  dialog.close();
+  dialog.style.display = "none"; // Fuerza ocultar
+  setTimeout(() => {
+    dialog.style.display = "flex"; // Rehabilita para el siguiente uso
+  }, 10);
+}
+
 });
 
 // Renderiza carruseles de fotos

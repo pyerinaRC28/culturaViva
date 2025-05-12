@@ -142,7 +142,7 @@ section.nosotros {
       color: #ffff;
       text-align: justify;
 
-      .title{
+      .title {
         margin: 0;
       }
 
@@ -160,7 +160,6 @@ section.nosotros {
         font-style: normal;
         font-size: 1em;
       }
-      
     }
     img {
       width: 400px;
@@ -192,7 +191,7 @@ section.nosotros {
     padding: 20px;
     align-items: flex-start;
 
-    .lis{
+    .lis {
       margin: 0;
     }
 
@@ -670,6 +669,18 @@ footer {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+    }
+    #videoModal {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #videoModal.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
     }
   }
 
