@@ -124,13 +124,12 @@ hr {
 /*-----------AQUÍ EMPIEZA SECTION NOSOTROS------------------*/
 section.nosotros {
   margin: 60px 250px;
-  background-color: #e632b5;
+  background-color: #7134e5;
   padding: 60px 0;
 
   .antes {
-    padding: 0px 20px;
+    margin: 0px 70px;
     display: flex;
-    gap: 90px;
     justify-content: center;
     align-items: center;
 
@@ -138,11 +137,14 @@ section.nosotros {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 20px;
-      padding: 40px 0;
-
+      gap: 8px;
+      padding-bottom: 40px;
       color: #ffff;
-      width: 40%;
+      text-align: justify;
+
+      .title{
+        margin: 0;
+      }
 
       p {
         font-family: var(--font-primary);
@@ -151,13 +153,14 @@ section.nosotros {
         font-size: 1.8em;
       }
 
-      li {
+      .list {
         font-family: var(--font-secondary);
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: normal;
         font-size: 1em;
       }
+      
     }
     img {
       width: 400px;
@@ -173,13 +176,13 @@ section.nosotros {
     font-family: var(--font-primary);
   }
   .tex {
-    background-color: #7134e5;
+    background-color: #e632b5;
     color: #fff;
     padding: 15px;
-    border-radius: 10px;
   }
   .proposito {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 15px;
     margin: 15px 70px;
@@ -187,7 +190,11 @@ section.nosotros {
     font-family: var(--font-secondary);
     background-color: #73e82d;
     padding: 20px;
-    border-radius: 15px;
+    align-items: flex-start;
+
+    .lis{
+      margin: 0;
+    }
 
     .icon {
       font-size: 30px;
