@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarruselFotos(fotosHorizontales, 'horizontal-carousel-inner');
   renderCarruselFotos(fotosVerticales, 'vertical-carousel-inner');
 
-  const container = document.getElementById('videoGallery');
-  const videoModal = document.getElementById('videoModal');
-  const videoFrame = document.getElementById('videoFrame');
-  const bootstrapModal = new bootstrap.Modal(videoModal);
-
+  const dialog = document.getElementById("videoModal");
+  const videoFram = document.getElementById("videoFrame");
+  const videoGallery = document.getElementById("videoGallery");
   // Renderizar miniaturas de videos
   videoLinks.forEach(video => {
     const div = document.createElement('div');
@@ -17,42 +15,69 @@ document.addEventListener("DOMContentLoaded", () => {
       <img src="${video.poster}" alt="Video Thumbnail" class="video-thumbnail" />
     `;
 
-    container.appendChild(div);
+    videoGallery.appendChild(div);
   });
 
-  // Evento global para abrir el modal con el video correspondiente
-  document.addEventListener('click', function (e) {
-    const preview = e.target.closest('.video-preview');
+  //------------------Modal -------------------------------------------------------
 
-    if (preview) {
-      const id = preview.dataset.id;
-      const type = preview.dataset.type;
-      const iframe = document.getElementById('videoFrame');
 
-      let src = "";
+  videoGallery.innerHTML = ""; // Limpia por si acaso
 
-      if (type === "youtube") {
-        src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-      } else if (type === "vimeo") {
-        src = `https://player.vimeo.com/video/${id}?autoplay=1`;
-      }
-
-      iframe.src = src;
-
-      const myModal = new bootstrap.Modal(document.getElementById('videoModal'));
-      myModal.show();
-    }
-
-    // Cerrar video al cerrar el modal
-    if (e.target.matches('.btn-close')) {
-      const iframe = document.getElementById('videoFrame');
-      iframe.src = '';
-    }
+  // Crear y agregar las miniaturas
+  videoLinks.forEach((video) => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.addEventListener("click", () => openVideo(video));
+  
+    const img = document.createElement("img");
+    img.src = video.poster;
+    img.alt = video.title || "Video";
+  
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+  
+    const title = document.createElement("div");
+    title.className = "video-title";
+    title.textContent = video.title || "Sin título";
+  
+    const date = document.createElement("div");
+    date.className = "video-date";
+    date.textContent = video.date || "Sin fecha";
+  
+    overlay.appendChild(title);
+    overlay.appendChild(date);
+    card.appendChild(img);
+    card.appendChild(overlay);
+    videoGallery.appendChild(card);
   });
-
-  // Limpiar el iframe al cerrar el modal
-  videoModal.addEventListener('hidden.bs.modal', () => {
-    videoFrame.src = '';
+  
+  function openVideo(video) {
+    dialog.classList.remove("video-horizontal", "video-vertical", "show");
+    dialog.classList.add(video.orientation === "horizontal" ? "video-horizontal" : "video-vertical");
+  
+    let embedUrl = "";
+    if (video.type === "youtube") {
+      embedUrl = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+    } else if (video.type === "vimeo") {
+      embedUrl = `https://player.vimeo.com/video/${video.id}?autoplay=1`;
+    }
+  
+    videoFrame.src = embedUrl;
+    dialog.showModal();
+    requestAnimationFrame(() => {
+      dialog.classList.add("show");
+    });
+  }
+  
+  // Cerrar el modal al hacer clic afuera
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.classList.remove("show");
+      setTimeout(() => {
+        videoFrame.src = "";
+        dialog.close();
+      }, 300); // Coincide con duración de transición en CSS
+    }
   });
 });
 
@@ -110,8 +135,7 @@ const fotosHorizontales = [
   { src: "./img/_DSC5435.jpg" },
   { src: "./img/_DSC2250.jpg" },
   { src: "./img/_MG_9892.jpg" },
-  { src: "./img/_MG_9892.jpg" },
-  { src: "./img/_MG_0881.jpg" },
+  { src: "./img/_DSC0881.jpg" },
 ];
 
 const fotosVerticales = [
@@ -127,7 +151,7 @@ const fotosVerticales = [
   { src: "./img/_DSC2223.jpg" },
   { src: "./img/_DSC6715.jpg" },
   { src: "./img/_DSC1786.jpg" },
-  
+
 ];
 
 // Lista de videos (YouTube + Vimeo)
@@ -135,31 +159,57 @@ const videoLinks = [
   {
     type: "youtube",
     id: "6BkD_dwTow4",
-    poster: "https://i.ytimg.com/vi/6BkD_dwTow4/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARgTIEgofzAP&rs=AOn4CLDUQrkztQu_VMofDE7WBICG31NLqw"
+    title: "Piurarde Vol. 2",
+    date: "14/09/2024",
+    poster: "https://i.ytimg.com/vi/6BkD_dwTow4/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARgTIEgofzAP&rs=AOn4CLDUQrkztQu_VMofDE7WBICG31NLqw",
+    orientation: "horizontal"
   },
   {
     type: "youtube",
     id: "5Sh_2PW6udc",
-    poster: "https://i.ytimg.com/vi/5Sh_2PW6udc/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_IBMoRjAP&rs=AOn4CLBXSBJigkHlexuJ024vIrBfXfRsTw"
+    title: "Piurarde Vol. 3",
+    date: "07/12/2024",
+    poster: "https://i.ytimg.com/vi/5Sh_2PW6udc/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARh_IBMoRjAP&rs=AOn4CLBXSBJigkHlexuJ024vIrBfXfRsTw",
+    orientation: "horizontal"
   },
   {
     type: "vimeo",
     id: "1081597068?h=d765640d74&amp",
-    poster: "https://i.vimeocdn.com/video/2012410397-d9a2a6366fdd75d19a35ced3134abc5f69187b0f7f929045d952629d7d03bedd-d?mw=2240&mh=1260&q=70"
+    title: "Final Miss Piura",
+    date: "03/08/24",
+    poster: "https://i.vimeocdn.com/video/2012410397-d9a2a6366fdd75d19a35ced3134abc5f69187b0f7f929045d952629d7d03bedd-d?mw=2240&mh=1260&q=70",
+    orientation: "horizontal"
   },
   {
     type: "vimeo",
     id: "1081645760?h=7a57dd7fb1&amp",
-    poster: "https://i.vimeocdn.com/video/2012469498-a79c20e9fa5dcc8f619d136e3dae377cd18e4b56352c8781a657fb849ecd5adb-d?mw=500&mh=889"
+    title: "Piura Leyends Vol. 2",
+    date: "21/12/2024",
+    poster: "https://i.vimeocdn.com/video/2012469498-a79c20e9fa5dcc8f619d136e3dae377cd18e4b56352c8781a657fb849ecd5adb-d?mw=500&mh=889",
+    orientation: "vertical"
   },
   {
     type: "vimeo",
     id: "1081595991?h=c1639e1865&amp",
-    poster: "https://i.vimeocdn.com/video/2012408937-a247f00e1f1ba4effd4b8a00cdee6fe00d54837c4620ba8e3a6e966942742deb-d?mw=1000&mh=1778&q=70"
+    title: "Clausura CAC",
+    date: "29/04/2025",
+    poster: "https://i.vimeocdn.com/video/2012408937-a247f00e1f1ba4effd4b8a00cdee6fe00d54837c4620ba8e3a6e966942742deb-d?mw=1000&mh=1778&q=70",
+    orientation: "vertical"
   },
   {
     type: "vimeo",
     id: "1081593182?h=e4c72f9ee7&amp",
-    poster: "https://i.vimeocdn.com/video/2012406123-9495fa9f63666d7bdd6e54500c91e89cdbb4f8ccee98de83ef1b315ac07cc5f7-d?mw=1000&mh=1778&q=70"
+    title: "Piurarde Vol. 4",
+    date: "05/04/2025",
+    poster: "https://i.vimeocdn.com/video/2012406123-9495fa9f63666d7bdd6e54500c91e89cdbb4f8ccee98de83ef1b315ac07cc5f7-d?mw=1000&mh=1778&q=70",
+    orientation: "vertical"
   }
 ];
+
+
+
+
+
+
+
+
