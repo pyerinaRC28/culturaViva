@@ -21,12 +21,12 @@ hr {
 /*--------AQUÍ EMPIEZA SECTION NAVBAR------*/
 .navbar {
   margin-top: 0;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 0px 12px !important;
   background-color: transparent;
   font-family: var(--font-secondary);
   font-weight: bold;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  height: 60px;
 
   .collapse {
     justify-content: flex-end;
@@ -36,8 +36,9 @@ hr {
   .navbar-brand {
     margin-left: 40px;
     background-color: black;
-    padding: 5px 10px;
-    border-radius: 5px;
+    height: 60px;
+    align-content: center;
+    padding: 0px 15px;
   }
   button {
     border: none;
@@ -121,7 +122,7 @@ hr {
 }
 
 /*-----------AQUÍ EMPIEZA SECTION NOSOTROS------------------*/
-section.nosotros { 
+section.nosotros {
   margin: 60px 250px;
   background-color: #e632b5;
   padding: 60px 0;
@@ -162,7 +163,7 @@ section.nosotros {
       width: 400px;
     }
   }
-  .mivi{
+  .mivi {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,13 +172,13 @@ section.nosotros {
     gap: 30px;
     font-family: var(--font-primary);
   }
-  .tex{
+  .tex {
     background-color: #7134e5;
     color: #fff;
     padding: 15px;
     border-radius: 10px;
   }
-  .proposito{
+  .proposito {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -188,10 +189,10 @@ section.nosotros {
     padding: 20px;
     border-radius: 15px;
 
-    .icon{
+    .icon {
       font-size: 30px;
     }
-    p{
+    p {
       margin: 0;
     }
   }
@@ -538,9 +539,13 @@ footer {
     }
     .navbar-brand {
       padding-left: 20px;
+      margin: 0;
     }
     .nav-link {
       font-size: 15px;
+    }
+    button {
+      margin-right: 0;
     }
   }
 
@@ -572,13 +577,20 @@ footer {
   /*-----Nosotros----------------*/
   section.nosotros {
     margin: 30px 20px;
-    flex-direction: column;
-    gap: 0;
+    padding: 10px;
 
-    .content {
+    .antes {
+      flex-direction: column-reverse;
+      gap: 0;
       color: #ffff;
-      padding: 5px;
       width: 100%;
+      margin: 10px 0px;
+
+      .content {
+        width: 100%;
+        margin: 10px 0px;
+        padding: 5px 0px;
+      }
 
       p {
         font-size: 1.6em;
@@ -588,10 +600,18 @@ footer {
       li {
         font-size: 1em;
       }
+      img {
+        width: 280px;
+      }
     }
-
-    img {
-      width: 280px;
+    .proposito {
+      flex-direction: column;
+      margin: 15px 20px;
+      text-align: center;
+    }
+    .mivi {
+      flex-direction: column;
+      margin: 30px 20px;
     }
   }
 
